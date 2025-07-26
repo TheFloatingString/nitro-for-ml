@@ -2,6 +2,21 @@
 
 A framework to simiplify ML experiments and tracking, inspired by Turbo by Ramp.
 
+## Examples
+
+Run all experiments:
+
+```bash
+uv run nitro --run-all
+```
+
+Run specific experiments, based on filepath names relative to project root
+directory
+
+```bash
+uv run nitro --run-exp "comma-separated experiment names"
+```
+
 ## Structure
 
 ```yaml
