@@ -1,38 +1,39 @@
 # nitro
 
-[![PyPI](https://img.shields.io/pypi/v/nitro.svg)](https://pypi.org/project/nitro/)
+A framework to simiplify ML experiments and tracking, inspired by Turbo by Ramp.
 
+## Examples
 
+Run all experiments:
 
-## Installation
-
-Install this tool using `pip`:
 ```bash
-pip install nitro
+uv run nitro --run-all
 ```
-## Usage
 
-For help, run:
-```bash
-nitro --help
-```
-You can also use:
-```bash
-python -m nitro --help
-```
-## Development
+Run specific experiments, based on filepath names relative to project root
+directory
 
-To contribute to this tool, first checkout the code. Then create a new virtual environment:
 ```bash
-cd nitro
-python -m venv venv
-source venv/bin/activate
+uv run nitro --run-exp "comma-separated experiment names"
 ```
-Now install the dependencies and test dependencies:
-```bash
-pip install -e '.[test]'
+
+## Structure
+
+```yaml
+- datasets
+  - train: List[str] # each str is a filepath to a CSV file
+  - train_context: List[str]
+  - test: List[str]  # each str is a filepath to a CSV file
+  - test_context: List[str]
+- preprocessing:     # ordered list of str
+- classifier: <str>
+- scorer: <str>
 ```
-To run the tests:
-```bash
-python -m pytest
+
+## Default File Structure
+
+```
+/config  # store experiment yaml files
+/results # store experiment results here as yaml files
+/data    # store CSV files here
 ```
