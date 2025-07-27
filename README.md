@@ -2,7 +2,10 @@
 
 A framework to simiplify ML experiments and tracking, inspired by Turbo by Ramp.
 
+From project root directory:
+
 ```bash
+export PROJECT_ROOT=$(pwd)
 uv sync --reinstall-package local
 ```
 
