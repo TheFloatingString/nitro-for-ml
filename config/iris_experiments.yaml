@@ -1,12 +1,29 @@
 sample_iris_experiment:
   datasets:
-    train:
+    X_train:
       - data/iris_X_train.jsonl
+    y_train:
       - data/iris_y_train.jsonl
-    test:
+    X_test:
       - data/iris_X_test.jsonl
+    y_test:
       - data/iris_y_test.jsonl
   preprocessing:
-    - "scale"
-  classifier: "logistic_regression"
+    - "sklearn.preprocessing.StandardScaler"
+  classifier: "local.classifier.NullClassifier"
+  scorer: "accuracy"
+---
+sample_iris_experiment_2:
+  datasets:
+    X_train:
+      - data/iris_X_train.jsonl
+    y_train:
+      - data/iris_y_train.jsonl
+    X_test:
+      - data/iris_X_test.jsonl
+    y_test:
+      - data/iris_y_test.jsonl
+  preprocessing:
+    - "sklearn.preprocessing.StandardScaler"
+  classifier: "sklearn.svm.SVC"
   scorer: "accuracy"

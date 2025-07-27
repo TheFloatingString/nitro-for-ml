@@ -10,16 +10,26 @@ classifiers = []
 dependencies = [
     "click",
     "datasets>=3.1.0",
+    "pandas>=2.0.3",
+    "pyyaml>=6.0.2",
+    "rich>=14.1.0",
     "ruff>=0.12.5",
     "scikit-learn>=1.3.2",
+    "local @ /Users/lliang/projects/nitro/nitro/local"
 ]
 
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
+# [tool.uv.workspace]
+# members = [
+#     "local/local",
+#     "local",
+# ]
+
 [project.scripts]
-nitro = "src.nitro.cli:cli"
+nitro = "nitro.cli:cli"
 
 [project.optional-dependencies]
 test = ["pytest"]

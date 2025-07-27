@@ -2,6 +2,10 @@
 
 A framework to simiplify ML experiments and tracking, inspired by Turbo by Ramp.
 
+```bash
+uv sync --reinstall-package local
+```
+
 ## Examples
 
 Run all experiments:

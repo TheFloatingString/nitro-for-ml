@@ -1,0 +1,19 @@
+[project]
+name = "local"
+version = "0.1.2"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Laurence Liang", email = "laurence.w.liang@gmail.com" }
+]
+requires-python = ">=3.1"
+dependencies = [
+  "numpy"
+]
+
+[project.scripts]
+local = "local:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
