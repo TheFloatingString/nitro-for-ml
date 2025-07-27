@@ -4,18 +4,18 @@ import click
 @click.group()
 @click.version_option()
 def cli():
-    ""
+    "Nitro CLI"
 
 
-@cli.command(name="command")
-@click.argument(
-    "example"
-)
+@cli.command(name="run")
 @click.option(
-    "-o",
-    "--option",
-    help="An example option",
+    "--all",
+    help="Run all experiments",
+    is_flag=True,
 )
-def first_command(example, option):
-    "Command description goes here"
-    click.echo("Here is some output")
+def nitro_cli(all):
+    "Run all experiments"
+    if all:
+        print("Running all experiments")
+    else:
+        print("Running some experiments")
