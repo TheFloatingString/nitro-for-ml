@@ -20,14 +20,15 @@ uv run nitro --run-exp "comma-separated experiment names"
 ## Structure
 
 ```yaml
-- datasets
-  - train: List[str] # each str is a filepath to a CSV file
-  - train_context: List[str]
-  - test: List[str]  # each str is a filepath to a CSV file
-  - test_context: List[str]
-- preprocessing:     # ordered list of str
-- classifier: <str>
-- scorer: <str>
+<experiment_name>:
+  datasets:
+    train: List[str] # each str is a filepath to a CSV file
+    train_context: List[str]
+    test: List[str]  # each str is a filepath to a CSV file
+    test_context: List[str]
+  preprocessing:     # ordered list of str
+  classifier: <str>
+  scorer: <str>
 ```
 
 ## Default File Structure

@@ -1,5 +1,5 @@
 from click.testing import CliRunner
-from nitro.cli import cli
+from src.cli import cli
 
 
 def test_version():

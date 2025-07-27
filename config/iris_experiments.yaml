@@ -1,0 +1,12 @@
+sample_iris_experiment:
+  datasets:
+    train:
+      - data/iris_X_train.jsonl
+      - data/iris_y_train.jsonl
+    test:
+      - data/iris_X_test.jsonl
+      - data/iris_y_test.jsonl
+  preprocessing:
+    - "scale"
+  classifier: "logistic_regression"
+  scorer: "accuracy"
