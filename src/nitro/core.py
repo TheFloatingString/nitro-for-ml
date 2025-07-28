@@ -12,16 +12,16 @@ def run_experiment(config_dict: dict):
     # load datasets
     X_train = []
     for filepath in config_dict[experiment_name]["datasets"]["X_train"]:
-        X_train.append(pd.read_json(filepath, lines=True).to_numpy())
+        X_train.append(pd.read_json(filepath, lines=True))
     y_train = []
     for filepath in config_dict[experiment_name]["datasets"]["y_train"]:
-        y_train.append(pd.read_json(filepath, lines=True).to_numpy())
+        y_train.append(pd.read_json(filepath, lines=True))
     X_test = []
     for filepath in config_dict[experiment_name]["datasets"]["X_test"]:
-        X_test.append(pd.read_json(filepath, lines=True).to_numpy())
+        X_test.append(pd.read_json(filepath, lines=True))
     y_test = []
     for filepath in config_dict[experiment_name]["datasets"]["y_test"]:
-        y_test.append(pd.read_json(filepath, lines=True).to_numpy())
+        y_test.append(pd.read_json(filepath, lines=True))
 
     X_train = np.concatenate(X_train)
     y_train = np.concatenate(y_train)
@@ -36,26 +36,19 @@ def run_experiment(config_dict: dict):
         module = importlib.import_module(module_name)
         class_ = getattr(module, class_name)
         scaler = class_()
-        X_train = scaler.fit_transform(X_train)
+        scaler.fit(X_train)
+        X_train = scaler.transform(X_train)
         X_test = scaler.transform(X_test)
 
     # run classifier
-    if (
-        config_dict[experiment_name]["classifier"]
-        == "local.classifier.null_classifier.NullClassifier"
-    ):
-        from local.classifier.null_classifier import NullClassifier
-
-        classifier = NullClassifier()
-    else:
-        classifier_step = config_dict[experiment_name]["classifier"]
-        classifier_step = classifier_step.split(".")
-        module_name = ".".join(classifier_step[:-1])
-        class_name = classifier_step[-1]
-        module = importlib.import_module(module_name)
-        class_ = getattr(module, class_name)
-        classifier = class_()
-        classifier.fit(X_train, y_train)
+    classifier_step = config_dict[experiment_name]["classifier"]
+    classifier_step = classifier_step.split(".")
+    module_name = ".".join(classifier_step[:-1])
+    class_name = classifier_step[-1]
+    module = importlib.import_module(module_name)
+    class_ = getattr(module, class_name)
+    classifier = class_()
+    classifier.fit(X_train, y_train)
 
     # run accuracy scorer
     y_pred = classifier.predict(X_test)
