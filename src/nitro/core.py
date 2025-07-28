@@ -23,10 +23,10 @@ def run_experiment(config_dict: dict):
     for filepath in config_dict[experiment_name]["datasets"]["y_test"]:
         y_test.append(pd.read_json(filepath, lines=True))
 
-    X_train = pd.concat(X_train)
-    y_train = pd.concat(y_train)
-    X_test = pd.concat(X_test)
-    y_test = pd.concat(y_test)
+    X_train = pd.concat(X_train).to_dict(orient="records")
+    y_train = pd.concat(y_train).to_dict(orient="records")
+    X_test = pd.concat(X_test).to_dict(orient="records")
+    y_test = pd.concat(y_test).to_dict(orient="records")
 
     # run preprocessing
     for preprocessing_step in config_dict[experiment_name]["preprocessing"]:
