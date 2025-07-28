@@ -24,9 +24,9 @@ def run_experiment(config_dict: dict):
         y_test.append(pd.read_json(filepath, lines=True))
 
     X_train = pd.concat(X_train).to_dict(orient="records")
-    y_train = pd.concat(y_train).to_dict(orient="records")
+    y_train = pd.concat(y_train).values
     X_test = pd.concat(X_test).to_dict(orient="records")
-    y_test = pd.concat(y_test).to_dict(orient="records")
+    y_test = pd.concat(y_test).values
 
     # run preprocessing
     for preprocessing_step in config_dict[experiment_name]["preprocessing"]:
